@@ -51,7 +51,6 @@ export class Comidas implements OnInit {
         this.cargarComidas();
     }
 
-    // Cargar comidas iniciales
     cargarComidas(): void {
 
         const url =
@@ -60,7 +59,6 @@ export class Comidas implements OnInit {
         this.consultarComidas(url);
     }
 
-    // Obtener ingredientes
     obtenerIngredientes(comida: any): string[] {
 
         const ingredientes: string[] = [];
@@ -76,8 +74,6 @@ export class Comidas implements OnInit {
 
         return ingredientes;
     }
-
-    // Asignar precios
     asignarPrecios(lista: any[]): Comida[] {
 
         return lista.map((comida) => {
@@ -107,7 +103,6 @@ export class Comidas implements OnInit {
         });
     }
 
-    // Mostrar u ocultar ingredientes
     mostrarIngredientes(idMeal: string): void {
 
         this.ingredientesVisibles[idMeal] =
@@ -164,7 +159,6 @@ export class Comidas implements OnInit {
         });
     }
 
-    // Consultar comidas
     consultarComidas(url: string): void {
 
         this.cargando = true;
@@ -210,7 +204,6 @@ export class Comidas implements OnInit {
         });
     }
 
-    // Buscar por nombre
     buscarPorNombre(): void {
 
         const busqueda = this.textoBusqueda.trim();
@@ -230,7 +223,6 @@ export class Comidas implements OnInit {
         this.consultarComidas(url);
     }
 
-    // Buscar por ingrediente
     buscarPorIngrediente(): void {
 
         const busqueda = this.ingredienteBusqueda.trim();
@@ -253,8 +245,6 @@ export class Comidas implements OnInit {
 
         this.consultarComidas(url);
     }
-
-    // Agregar comida al carrito
     comprarComida(comida: Comida): void {
 
         const cantidad = Math.floor(comida.cantidadSeleccionada);

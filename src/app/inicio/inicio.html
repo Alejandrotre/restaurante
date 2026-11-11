@@ -1,3 +1,4 @@
+
 <section class="inicio">
 
     <div class="presentacion">
@@ -6,7 +7,6 @@
 
         <h2>Mucho más que un restaurante</h2>
 
-        <!-- Logo del restaurante -->
         <img class="logo-inicio"
              src="/Manila.png"
              alt="Logo del restaurante Manila">
@@ -40,6 +40,49 @@
             compartir y descubrir nuevos sabores. Queremos
             convertirnos en un lugar donde cada persona se
             sienta bienvenida y encuentre una razón para regresar.
+        </p>
+
+    </div>
+
+    <!-- Especialidades de la casa -->
+    <div class="especialidades">
+
+        <h2>Especialidades de la casa</h2>
+
+        <p>Conoce nuestros productos estrella.</p>
+
+        <div class="contenedor-especialidades">
+
+            <!-- Comida -->
+            <div class="producto-estrella" *ngIf="comidaEstrella">
+
+                <img
+                    [src]="comidaEstrella.strMealThumb"
+                    [alt]="comidaEstrella.strMeal">
+
+                <h3>{{ comidaEstrella.strMeal }}</h3>
+
+                <span>Comida estrella</span>
+
+            </div>
+
+            <!-- Bebida -->
+            <div class="producto-estrella" *ngIf="bebidaEstrella">
+
+                <img
+                    [src]="bebidaEstrella.strDrinkThumb"
+                    [alt]="bebidaEstrella.strDrink">
+
+                <h3>{{ bebidaEstrella.strDrink }}</h3>
+
+                <span>Bebida estrella</span>
+
+            </div>
+
+        </div>
+
+        <p *ngIf="!comidaEstrella || !bebidaEstrella">
+            Cargando nuestras especialidades...
         </p>
 
     </div>

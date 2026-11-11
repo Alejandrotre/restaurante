@@ -5,7 +5,6 @@
 
     <div class="contenido">
 
-        <!-- Información del cliente -->
         <div class="informacion">
 
             <h2>Información del cliente</h2>
@@ -42,12 +41,10 @@
 
         </div>
 
-        <!-- Resumen del pedido -->
         <div class="resumen">
 
             <h2>Resumen del pedido</h2>
 
-            <!-- Productos seleccionados -->
             <div
                 class="producto"
                 *ngFor="let producto of productos">
@@ -110,7 +107,6 @@
 
             </div>
 
-            <!-- Carrito vacío -->
             <div class="vacio" *ngIf="productos.length === 0">
                 <p>Aún no tienes productos en tu pedido.</p>
                 <p>Visita nuestras secciones de comidas y bebidas.</p>
@@ -118,7 +114,6 @@
 
             <hr>
 
-            <!-- Total -->
             <div class="total">
                 <h3>Total a pagar</h3>
 

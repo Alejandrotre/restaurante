@@ -38,7 +38,6 @@ export class Bebidas implements OnInit {
     cargando: boolean = false;
     mensajeError: string = '';
 
-    // Guarda los precios para que no cambien al filtrar
     preciosAsignados: { [id: string]: number } = {};
 
     constructor(
@@ -50,7 +49,6 @@ export class Bebidas implements OnInit {
         this.cargarBebidas();
     }
 
-    // Carga las bebidas disponibles de la A a la Z
     cargarBebidas(): void {
 
         this.cargando = true;
@@ -77,7 +75,6 @@ export class Bebidas implements OnInit {
                     respuesta.drinks ?? []
                 );
 
-                // Evita bebidas repetidas
                 const bebidasUnicas = Array.from(
                     new Map(resultados.map((bebida: any) => [
                         bebida.idDrink,
@@ -142,7 +139,6 @@ export class Bebidas implements OnInit {
         };
     }
 
-    // Aplica todos los filtros
     filtrarBebidas(): void {
 
         const nombre = this.textoBusqueda.trim().toLowerCase();
@@ -205,7 +201,6 @@ export class Bebidas implements OnInit {
         this.mensajeError = '';
     }
 
-    // Agregar bebida al carrito
     comprarBebida(bebida: Bebida): void {
 
         const cantidad = Math.floor(bebida.cantidadSeleccionada);

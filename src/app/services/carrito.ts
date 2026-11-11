@@ -39,8 +39,6 @@ export class CarritoService {
             );
         }
     }
-
-    // Agregar producto al carrito
     agregarProducto(producto: ProductoPedido): void {
 
         const existente = this.productos.find(
@@ -60,8 +58,6 @@ export class CarritoService {
 
         this.guardarProductos();
     }
-
-    // Eliminar producto
     eliminarProducto(id: string, tipo: string): void {
 
         this.productos = this.productos.filter(
@@ -70,8 +66,6 @@ export class CarritoService {
 
         this.guardarProductos();
     }
-
-    // Cambiar cantidad
     cambiarCantidad(
         id: string,
         tipo: string,
@@ -89,8 +83,6 @@ export class CarritoService {
             this.guardarProductos();
         }
     }
-
-    // Calcular total
     obtenerTotal(): number {
 
         return this.productos.reduce(
@@ -99,8 +91,6 @@ export class CarritoService {
             0
         );
     }
-
-    // Vaciar carrito
     vaciarCarrito(): void {
 
         this.productos = [];

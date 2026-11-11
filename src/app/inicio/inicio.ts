@@ -1,9 +1,49 @@
-import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
 
 @Component({
-  imports: [],
-  selector: 'app-inicio',
-  styleUrl: './inicio.css',
-  templateUrl: './inicio.html',
+    imports: [CommonModule],
+    selector: 'app-inicio',
+    styleUrl: './inicio.css',
+    templateUrl: './inicio.html',
 })
-export class Inicio {}
+export class Inicio implements OnInit {
+
+    comidaEstrella: any = null;
+    bebidaEstrella: any = null;
+
+    constructor(private http: HttpClient) {}
+
+    ngOnInit(): void {
+        this.obtenerEspecialidades();
+    }
+
+    obtenerEspecialidades(): void {
+
+        forkJoin([
+            this.http.get<any>(
+                'https://www.themealdb.com/api/json/v1/1/random.php'
+            ),
+
+            this.http.get<any>(
+                'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+            )
+
+        ]).subscribe({
+
+            next: (respuesta) => {
+                this.comidaEstrella = respuesta[0].meals[0];
+                this.bebidaEstrella = respuesta[1].drinks[0];
+            },
+
+            error: (error) => {
+                console.error('Error al cargar las especialidades:', error);
+            }
+
+        });
+
+    }
+}
