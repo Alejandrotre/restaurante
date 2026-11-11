@@ -1,0 +1,82 @@
+
+<nav class="navbar navbar-dark">
+  <div class="container-fluid">
+
+    <!-- Logo y nombre -->
+    <div class="contenedor-logo">
+      <a class="navbar-brand" routerLink="/">
+        <img src="/Manila.png" alt="Logo Manila">
+      </a>
+
+      <a class="navbar-brand nombre" routerLink="/">
+        Manila
+      </a>
+    </div>
+
+    <!-- Botón para abrir y cerrar el menú -->
+    <button
+      class="menu-toggle"
+      type="button"
+      (click)="menuAbierto = !menuAbierto"
+      [attr.aria-expanded]="menuAbierto"
+      aria-label="Abrir menú">
+      ☰
+    </button>
+
+    <!-- Opciones de navegación -->
+    <ul class="navbar-nav" [class.menu-abierto]="menuAbierto">
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="activo"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="menuAbierto = false">
+          Inicio
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/comidas"
+          routerLinkActive="activo"
+          (click)="menuAbierto = false">
+          Comida
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/bebidas"
+          routerLinkActive="activo"
+          (click)="menuAbierto = false">
+          Bebidas
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/pedido"
+          routerLinkActive="activo"
+          (click)="menuAbierto = false">
+          Pedido
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/juego"
+          routerLinkActive="activo"
+          (click)="menuAbierto = false">
+          Juego
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</nav>

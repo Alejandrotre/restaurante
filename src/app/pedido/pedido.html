@@ -1,0 +1,141 @@
+
+<section class="pedido">
+
+    <h1>Realizar pedido</h1>
+
+    <div class="contenido">
+
+        <!-- Información del cliente -->
+        <div class="informacion">
+
+            <h2>Información del cliente</h2>
+
+            <label>Nombre completo</label>
+            <input
+                type="text"
+                placeholder="Ingrese su nombre"
+                [(ngModel)]="nombre">
+
+            <label>Documento</label>
+            <input
+                type="text"
+                placeholder="Número de documento"
+                [(ngModel)]="documento">
+
+            <label>Teléfono</label>
+            <input
+                type="tel"
+                placeholder="Número de teléfono"
+                [(ngModel)]="telefono">
+
+            <label>Dirección</label>
+            <input
+                type="text"
+                placeholder="Dirección de entrega"
+                [(ngModel)]="direccion">
+
+            <label>Correo electrónico</label>
+            <input
+                type="email"
+                placeholder="Correo electrónico"
+                [(ngModel)]="correo">
+
+        </div>
+
+        <!-- Resumen del pedido -->
+        <div class="resumen">
+
+            <h2>Resumen del pedido</h2>
+
+            <!-- Productos seleccionados -->
+            <div
+                class="producto"
+                *ngFor="let producto of productos">
+
+                <img
+                    [src]="producto.imagen"
+                    [alt]="producto.nombre">
+
+                <div class="detalle-producto">
+
+                    <h3>{{ producto.nombre }}</h3>
+
+                    <p>
+                        {{ producto.precio | currency:'COP':'symbol-narrow':'1.0-0' }}
+                        c/u
+                    </p>
+
+                    <div class="controles-cantidad">
+                        <button
+                            type="button"
+                            (click)="cambiarCantidad(
+                                producto.id,
+                                producto.tipo,
+                                producto.cantidad - 1
+                            )"
+                            [disabled]="producto.cantidad <= 1">
+                            -
+                        </button>
+
+                        <span>{{ producto.cantidad }}</span>
+
+                        <button
+                            type="button"
+                            (click)="cambiarCantidad(
+                                producto.id,
+                                producto.tipo,
+                                producto.cantidad + 1
+                            )">
+                            +
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="acciones-producto">
+
+                    <strong>
+                        {{ producto.precio * producto.cantidad |
+                        currency:'COP':'symbol-narrow':'1.0-0' }}
+                    </strong>
+
+                    <button
+                        type="button"
+                        class="eliminar"
+                        (click)="eliminarProducto(producto.id, producto.tipo)">
+                        Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Carrito vacío -->
+            <div class="vacio" *ngIf="productos.length === 0">
+                <p>Aún no tienes productos en tu pedido.</p>
+                <p>Visita nuestras secciones de comidas y bebidas.</p>
+            </div>
+
+            <hr>
+
+            <!-- Total -->
+            <div class="total">
+                <h3>Total a pagar</h3>
+
+                <h3>
+                    {{ total | currency:'COP':'symbol-narrow':'1.0-0' }}
+                </h3>
+            </div>
+
+            <button
+                type="button"
+                (click)="confirmarPedido()"
+                [disabled]="productos.length === 0">
+                Confirmar pedido
+            </button>
+
+        </div>
+
+    </div>
+
+</section>

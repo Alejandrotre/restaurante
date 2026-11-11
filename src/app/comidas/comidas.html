@@ -1,0 +1,157 @@
+
+<section class="catalogo">
+
+    <h1>Nuestro menú</h1>
+
+    <p class="descripcion">
+        Descubre nuestra variedad de comidas y encuentra
+        tu plato favorito.
+    </p>
+
+    <div class="contenedor-buscadores">
+
+        <div class="buscador">
+
+            <h3>Buscar por nombre</h3>
+
+            <input
+                type="text"
+                placeholder="Ej. Arrabiata, Chicken..."
+                [(ngModel)]="textoBusqueda"
+                (keyup.enter)="buscarPorNombre()">
+
+            <button
+                type="button"
+                (click)="buscarPorNombre()">
+
+                Buscar comida
+
+            </button>
+
+        </div>
+
+        <div class="buscador">
+
+            <h3>Buscar por ingrediente</h3>
+
+            <input
+                type="text"
+                placeholder="Ej. Chicken, Garlic..."
+                [(ngModel)]="ingredienteBusqueda"
+                (keyup.enter)="buscarPorIngrediente()">
+
+            <button
+                type="button"
+                (click)="buscarPorIngrediente()">
+
+                Buscar ingrediente
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <p class="estado" *ngIf="cargando">
+        Cargando comidas...
+    </p>
+
+    <p class="estado" *ngIf="mensajeError">
+        {{ mensajeError }}
+    </p>
+
+    <div
+        class="contenedor-comidas"
+        *ngIf="!cargando && comidas.length > 0">
+
+        <div
+            class="tarjeta-comida"
+            *ngFor="let comida of comidas">
+
+            <img
+                [src]="comida.strMealThumb"
+                [alt]="comida.strMeal">
+
+            <h3>{{ comida.strMeal }}</h3>
+
+            <button
+                type="button"
+                class="btn-ingredientes"
+                (click)="mostrarIngredientes(comida.idMeal)">
+
+                {{ ingredientesVisibles[comida.idMeal]
+                    ? 'Ocultar ingredientes'
+                    : 'Ver ingredientes' }}
+
+            </button>
+
+            <div
+                class="ingredientes"
+                *ngIf="ingredientesVisibles[comida.idMeal]">
+
+                <h4>Ingredientes:</h4>
+
+                <p *ngIf="comida.cargandoIngredientes">
+                    Cargando ingredientes...
+                </p>
+
+                <ul
+                    *ngIf="!comida.cargandoIngredientes &&
+                    comida.ingredientes.length > 0">
+
+                    <li
+                        *ngFor="let ingrediente of comida.ingredientes">
+
+                        {{ ingrediente }}
+
+                    </li>
+
+                </ul>
+
+                <p
+                    *ngIf="!comida.cargandoIngredientes &&
+                    comida.ingredientes.length === 0">
+
+                    No se pudieron obtener los ingredientes.
+
+                </p>
+
+            </div>
+
+            <p class="precio">
+                {{ comida.precio | currency:'COP':'symbol-narrow':'1.0-0' }}
+            </p>
+
+            <div class="comprar">
+
+                <label>Cantidad:</label>
+
+                <input
+                    type="number"
+                    min="1"
+                    step="1"
+                    [(ngModel)]="comida.cantidadSeleccionada">
+
+                <button
+                    type="button"
+                    (click)="comprarComida(comida)">
+
+                    Comprar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <p
+        class="estado"
+        *ngIf="!cargando && comidas.length === 0 && !mensajeError">
+
+        No se encontraron comidas.
+
+    </p>
+
+</section>

@@ -1,0 +1,177 @@
+
+.juego {
+    text-align: center;
+    padding: 40px 20px;
+    color: #292929;
+}
+
+.juego h1 {
+    color: #292929;
+    font-size: 32px;
+}
+
+.descripcion {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.informacion {
+    margin-bottom: 25px;
+}
+
+.informacion p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.objetivos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.objetivos span {
+    background-color: #292929;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.objetivos .encontrado {
+    background-color: #2e8b57;
+}
+
+.matriz {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 650px;
+    margin: 30px auto;
+}
+
+.carta {
+    height: 140px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.contenido-carta {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.carta.volteada .contenido-carta {
+    transform: rotateY(180deg);
+}
+
+.reverso,
+.frente {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.reverso {
+    background-color: #292929;
+    color: #E5A900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #E5A900;
+}
+
+.reverso span {
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.frente {
+    background-color: white;
+    transform: rotateY(180deg);
+    border: 2px solid #E5A900;
+}
+
+.frente img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.frente p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 12px;
+}
+
+.victoria h2 {
+    color: #2e8b57;
+    font-size: 28px;
+}
+
+.btn-reiniciar {
+    background-color: #E5A900;
+    color: #292929;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-reiniciar:hover {
+    background-color: #c99200;
+}
+
+.estado {
+    margin: 30px;
+    font-weight: bold;
+}
+
+/* Diseño responsive */
+@media (max-width: 600px) {
+
+    .matriz {
+        gap: 8px;
+    }
+
+    .carta {
+        height: 95px;
+    }
+
+    .frente p {
+        font-size: 9px;
+    }
+
+    .objetivos {
+        gap: 8px;
+    }
+
+    .objetivos span {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+.frente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.frente span {
+    font-size: 35px;
+}

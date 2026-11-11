@@ -1,0 +1,181 @@
+
+<section class="catalogo">
+
+    <h1>Nuestras bebidas</h1>
+
+    <p class="descripcion">
+        Descubre nuestra variedad de bebidas y encuentra tu favorita
+        para acompañar tus momentos especiales.
+    </p>
+
+    <!-- Buscadores -->
+    <div class="contenedor-buscadores">
+
+        <div class="busqueda">
+
+            <h3>Buscar cóctel</h3>
+
+            <input
+                type="text"
+                placeholder="Nombre de la bebida..."
+                [(ngModel)]="textoBusqueda"
+                (keyup.enter)="buscarPorNombre()">
+
+            <button
+                type="button"
+                (click)="buscarPorNombre()">
+
+                Buscar nombre
+
+            </button>
+
+        </div>
+
+        <div class="busqueda">
+
+            <h3>Buscar ingrediente</h3>
+
+            <input
+                type="text"
+                placeholder="Ejemplo: Vodka, Lemon..."
+                [(ngModel)]="ingredienteBusqueda"
+                (keyup.enter)="buscarPorIngrediente()">
+
+            <button
+                type="button"
+                (click)="buscarPorIngrediente()">
+
+                Buscar ingrediente
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Filtros -->
+    <div class="contenedor-filtros">
+
+        <div class="filtro">
+
+            <label for="tipo">Tipo de bebida</label>
+
+            <select
+                id="tipo"
+                [(ngModel)]="tipoSeleccionado"
+                (change)="cambiarTipo()">
+
+                <option value="">Todos los tipos</option>
+                <option value="Alcoholic">Alcohólica</option>
+                <option value="Non alcoholic">Sin alcohol</option>
+
+            </select>
+
+        </div>
+
+        <div class="filtro">
+
+            <label for="categoria">Categoría</label>
+
+            <select
+                id="categoria"
+                [(ngModel)]="categoriaSeleccionada"
+                (change)="cambiarCategoria()">
+
+                <option value="">Todas las categorías</option>
+                <option value="Ordinary Drink">Bebida ordinaria</option>
+                <option value="Cocktail">Cóctel</option>
+
+            </select>
+
+        </div>
+
+        <button
+            type="button"
+            class="btn-limpiar"
+            (click)="limpiarFiltros()">
+
+            Limpiar filtros
+
+        </button>
+
+    </div>
+
+    <!-- Estado de carga -->
+    <div class="estado" *ngIf="cargando">
+
+        <p>Cargando bebidas, por favor espera...</p>
+
+    </div>
+
+    <!-- Mensaje de error o búsqueda vacía -->
+    <div class="estado" *ngIf="mensajeError && !cargando">
+
+        <p>{{ mensajeError }}</p>
+
+    </div>
+
+    <!-- Catálogo -->
+    <div class="contenedor-bebidas" *ngIf="!cargando">
+
+        <div
+            class="tarjeta-bebida"
+            *ngFor="let bebida of bebidasFiltradas">
+
+            <img
+                [src]="bebida.strDrinkThumb"
+                [alt]="bebida.strDrink">
+
+            <h3>{{ bebida.strDrink }}</h3>
+
+            <p class="tipo">
+                {{ bebida.strAlcoholic }}
+            </p>
+
+            <p class="categoria">
+                {{ bebida.strCategory }}
+            </p>
+
+            <div class="ingredientes">
+
+                <h4>Ingredientes</h4>
+
+                <ul>
+
+                    <li *ngFor="let ingrediente of bebida.ingredientes">
+                        {{ ingrediente }}
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <p class="precio">
+                {{ bebida.precio | currency:'COP':'symbol-narrow':'1.0-0' }}
+            </p>
+
+            <div class="comprar">
+
+                <label>Cantidad:</label>
+
+                <input
+                    type="number"
+                    min="1"
+                    step="1"
+                    [(ngModel)]="bebida.cantidadSeleccionada">
+
+                <button
+                    type="button"
+                    (click)="comprarBebida(bebida)">
+
+                    Comprar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

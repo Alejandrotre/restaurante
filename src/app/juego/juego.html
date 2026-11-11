@@ -1,0 +1,53 @@
+
+<section class="juego">
+
+    <h1>Encuentra la comida y la bebida</h1>
+
+    <p>{{ mensaje }}</p>
+
+    <div class="matriz" *ngIf="!cargando">
+
+        <div
+            class="carta"
+            *ngFor="let carta of cartas"
+            [class.volteada]="carta.volteada"
+            (click)="voltearCarta(carta)">
+
+            <div class="contenido-carta">
+
+                <div class="reverso">
+                    <span>?</span>
+                </div>
+
+                <div class="frente">
+
+                    <img
+                        *ngIf="carta.tipo !== 'vacia'"
+                        [src]="carta.imagen"
+                        [alt]="carta.nombre">
+
+                    <span *ngIf="carta.tipo === 'vacia'">
+                        ❌
+                    </span>
+
+                    <p *ngIf="carta.tipo !== 'vacia'">
+                        {{ carta.nombre }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <p *ngIf="cargando">Cargando imágenes...</p>
+
+    <button
+        *ngIf="!cargando"
+        (click)="reiniciarJuego()">
+        Reiniciar juego
+    </button>
+
+</section>
