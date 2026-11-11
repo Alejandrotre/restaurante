@@ -1,4 +1,65 @@
 
+.inicio {
+    background-color: #FFF1D6;
+    color: #050505;
+    padding: 50px 8%;
+    min-height: 75vh;
+    text-align: center;
+}
+
+.presentacion {
+    max-width: 850px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.presentacion h1 {
+    color: #E5A900;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.presentacion h2,
+.historia h2 {
+    color: #E5A900;
+    margin-bottom: 20px;
+}
+
+.presentacion p,
+.historia p {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.historia {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 35px;
+    border: 1px solid #E5A900;
+    border-radius: 15px;
+}
+
+.mensaje {
+    margin: 40px auto 10px;
+}
+
+.mensaje h2 {
+    color: #E5A900;
+}
+
+.mensaje p {
+    font-size: 17px;
+}
+
+/* Logo del restaurante */
+.logo-inicio {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    display: block;
+    margin: 20px auto;
+}
+
 /* Especialidades de la casa */
 .especialidades {
     max-width: 900px;
@@ -57,8 +118,26 @@
     font-weight: bold;
 }
 
-/* Adaptación para celulares */
+/* Diseño responsive */
 @media (max-width: 600px) {
+
+    .presentacion h1 {
+        font-size: 32px;
+    }
+
+    .presentacion p,
+    .historia p {
+        font-size: 15px;
+    }
+
+    .historia {
+        padding: 20px;
+    }
+
+    .logo-inicio {
+        width: 220px;
+        height: 220px;
+    }
 
     .especialidades {
         padding: 20px 10px;
