@@ -1,4 +1,5 @@
 
+/* Contenedor principal */
 .inicio {
     background-color: #FFF1D6;
     color: #050505;
@@ -7,131 +8,182 @@
     text-align: center;
 }
 
+/* Presentación principal */
 .presentacion {
-    max-width: 850px;
+    max-width: 1100px;
     margin: auto;
     padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    text-align: left;
 }
 
-.presentacion h1 {
+.texto-presentacion {
+    flex: 1;
+}
+
+.texto-presentacion h1 {
     color: #E5A900;
     font-size: 45px;
     margin-bottom: 20px;
 }
 
-.presentacion h2,
-.historia h2 {
+.texto-presentacion h2 {
     color: #E5A900;
     margin-bottom: 20px;
 }
 
-.presentacion p,
-.historia p {
+.texto-presentacion p {
     font-size: 17px;
     line-height: 1.8;
 }
 
-.historia {
-    max-width: 850px;
-    margin: 30px auto;
-    padding: 35px;
-    border: 1px solid #E5A900;
-    border-radius: 15px;
+/* Logo circular */
+.contenedor-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.logo-inicio {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #E5A900;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Conoce Manila */
+.historia {
+    max-width: 850px;
+    margin: 70px auto;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.historia h2,
+.especialidades h2 {
+    color: #C99500;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+/* Línea decorativa */
+.linea-decorativa {
+    width: 65px;
+    height: 4px;
+    background-color: #E5A900;
+    border-radius: 10px;
+    margin: 0 auto 25px;
+}
+
+.historia p {
+    max-width: 750px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.9;
+    color: #444;
+}
+
+/* Productos estrella */
+.especialidades {
+    max-width: 1050px;
+    margin: 60px auto;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.subtitulo-especialidades {
+    color: #555;
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+.contenedor-especialidades {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 45px;
+    margin-top: 30px;
+}
+
+.producto-estrella {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.producto-estrella img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease;
+}
+
+.producto-estrella img:hover {
+    transform: scale(1.03);
+}
+
+/* Información de cada producto */
+.informacion-producto {
+    width: 100%;
+    padding: 20px 5px;
+}
+
+.informacion-producto span {
+    color: #B58700;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.informacion-producto h3 {
+    color: #252525;
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+.informacion-producto p {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* Mensaje final */
 .mensaje {
-    margin: 40px auto 10px;
+    margin: 60px auto 10px;
+    text-align: center;
 }
 
 .mensaje h2 {
-    color: #E5A900;
+    color: #C99500;
 }
 
 .mensaje p {
     font-size: 17px;
 }
 
-/* Logo del restaurante */
-.logo-inicio {
-    width: 300px;
-    height: 300px;
-    object-fit: contain;
-    display: block;
-    margin: 20px auto;
-}
-
-/* Especialidades de la casa */
-.especialidades {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 35px 20px;
-    border: 1px solid #E5A900;
-    border-radius: 15px;
-}
-
-.especialidades h2 {
-    color: #E5A900;
-    margin-bottom: 15px;
-}
-
-.especialidades > p {
-    font-size: 17px;
-    line-height: 1.8;
-}
-
-.contenedor-especialidades {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 25px;
-}
-
-.producto-estrella {
-    width: 300px;
-    padding: 15px;
-    background-color: white;
-    border: 1px solid #E5A900;
-    border-radius: 15px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-}
-
-.producto-estrella img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.producto-estrella h3 {
-    color: #050505;
-    margin: 15px 0;
-}
-
-.producto-estrella span {
-    display: inline-block;
-    background-color: #E5A900;
-    color: #050505;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-}
-
 /* Diseño responsive */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-    .presentacion h1 {
+    /* Presentación */
+    .presentacion {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .texto-presentacion h1 {
         font-size: 32px;
     }
 
-    .presentacion p,
-    .historia p {
+    .texto-presentacion p {
         font-size: 15px;
-    }
-
-    .historia {
-        padding: 20px;
     }
 
     .logo-inicio {
@@ -139,16 +191,46 @@
         height: 220px;
     }
 
-    .especialidades {
+    /* Conoce Manila */
+    .historia {
+        margin: 40px auto;
         padding: 20px 10px;
     }
 
-    .producto-estrella {
-        width: 100%;
-        max-width: 300px;
+    .historia h2,
+    .especialidades h2 {
+        font-size: 25px;
     }
 
-    .especialidades > p {
+    .historia p {
+        font-size: 15px;
+    }
+
+    /* Productos estrella */
+    .contenedor-especialidades {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .producto-estrella {
+        max-width: 400px;
+        margin: auto;
+    }
+
+    .producto-estrella img {
+        height: 230px;
+    }
+
+    .informacion-producto h3 {
+        font-size: 20px;
+    }
+
+    .subtitulo-especialidades {
+        font-size: 15px;
+    }
+
+    /* Mensaje final */
+    .mensaje p {
         font-size: 15px;
     }
 }

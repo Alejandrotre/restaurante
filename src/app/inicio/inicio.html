@@ -1,39 +1,55 @@
 
 <section class="inicio">
 
+    <!-- Presentación del restaurante -->
     <div class="presentacion">
 
-        <h1>Bienvenidos a Manila</h1>
+        <!-- Descripción -->
+        <div class="texto-presentacion">
 
-        <h2>Mucho más que un restaurante</h2>
+            <h1>Bienvenidos a Manila</h1>
 
-        <img class="logo-inicio"
-             src="/Manila.png"
-             alt="Logo del restaurante Manila">
+            <h2>Mucho más que un restaurante</h2>
 
-        <p>
-            En Manila queremos ofrecerte una experiencia especial,
-            donde el sabor, la calidad y la buena atención se unen
-            para crear momentos inolvidables.
-        </p>
+            <p>
+                En Manila queremos ofrecerte una experiencia especial,
+                donde el sabor, la calidad y la buena atención se unen
+                para crear momentos inolvidables.
+            </p>
 
-        <p>
-            Nuestro restaurante nace con la idea de brindar un
-            espacio agradable para compartir con familiares,
-            amigos y personas especiales.
-        </p>
+            <p>
+                Nuestro restaurante nace con la idea de brindar un
+                espacio agradable para compartir con familiares,
+                amigos y personas especiales.
+            </p>
 
-        <p>
-            Estamos trabajando para ofrecerte una variedad de
-            comidas y bebidas que harán de cada visita una
-            experiencia única.
-        </p>
+            <p>
+                Estamos trabajando para ofrecerte una variedad de
+                comidas y bebidas que harán de cada visita una
+                experiencia única.
+            </p>
+
+        </div>
+
+        <!-- Logo -->
+        <div class="contenedor-logo">
+
+            <img
+                class="logo-inicio"
+                src="/Manila.png"
+                alt="Logo del restaurante Manila">
+
+        </div>
 
     </div>
 
+
+    <!-- Conoce Manila -->
     <div class="historia">
 
         <h2>Conoce Manila</h2>
+
+        <div class="linea-decorativa"></div>
 
         <p>
             Manila es un espacio pensado para disfrutar,
@@ -44,49 +60,77 @@
 
     </div>
 
-    <!-- Especialidades de la casa -->
+
+    <!-- Productos estrella -->
     <div class="especialidades">
 
-        <h2>Especialidades de la casa</h2>
+        <h2>Los favoritos de Manila</h2>
 
-        <p>Conoce nuestros productos estrella.</p>
+        <div class="linea-decorativa"></div>
+
+        <p class="subtitulo-especialidades">
+            Descubre algunas de nuestras especialidades.
+        </p>
 
         <div class="contenedor-especialidades">
 
-            <!-- Comida -->
+            <!-- Comida estrella -->
             <div class="producto-estrella" *ngIf="comidaEstrella">
 
                 <img
                     [src]="comidaEstrella.strMealThumb"
                     [alt]="comidaEstrella.strMeal">
 
-                <h3>{{ comidaEstrella.strMeal }}</h3>
+                <div class="informacion-producto">
 
-                <span>Comida estrella</span>
+                    <span>COMIDA DESTACADA</span>
+
+                    <h3>{{ comidaEstrella.strMeal }}</h3>
+
+                    <p>
+                        Una deliciosa preparación que combina sabores
+                        y aromas especiales para ofrecerte una experiencia
+                        única en cada bocado.
+                    </p>
+
+                </div>
 
             </div>
 
-            <!-- Bebida -->
+
+            <!-- Bebida estrella -->
             <div class="producto-estrella" *ngIf="bebidaEstrella">
 
                 <img
                     [src]="bebidaEstrella.strDrinkThumb"
                     [alt]="bebidaEstrella.strDrink">
 
-                <h3>{{ bebidaEstrella.strDrink }}</h3>
+                <div class="informacion-producto">
 
-                <span>Bebida estrella</span>
+                    <span>BEBIDA DESTACADA</span>
+
+                    <h3>{{ bebidaEstrella.strDrink }}</h3>
+
+                    <p>
+                        Una bebida refrescante y especial, ideal para
+                        acompañar tus comidas y disfrutar cualquier momento.
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
 
+        <!-- Mensaje de carga -->
         <p *ngIf="!comidaEstrella || !bebidaEstrella">
             Cargando nuestras especialidades...
         </p>
 
     </div>
 
+
+    <!-- Mensaje final -->
     <div class="mensaje">
 
         <h2>¡Gracias por visitarnos!</h2>

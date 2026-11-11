@@ -24,12 +24,15 @@ export class Inicio implements OnInit {
     obtenerEspecialidades(): void {
 
         forkJoin([
+
+            // Comida fija mediante su ID
             this.http.get<any>(
-                'https://www.themealdb.com/api/json/v1/1/random.php'
+                'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772'
             ),
 
+            // Bebida fija mediante su ID
             this.http.get<any>(
-                'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+                'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007'
             )
 
         ]).subscribe({
