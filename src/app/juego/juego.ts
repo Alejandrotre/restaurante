@@ -1,8 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
 
 interface Carta {
     id: number;
@@ -23,77 +21,57 @@ export class Juego implements OnInit {
 
     cartas: Carta[] = [];
     juegoGanado = false;
-    cargando = true;
     mensaje = 'Encuentra la comida y la bebida.';
 
-    constructor(private http: HttpClient) {}
-
     ngOnInit(): void {
-        this.cargarCartas();
+        this.crearCartas();
     }
 
-    cargarCartas(): void {
+    crearCartas(): void {
 
-        forkJoin([
-            this.http.get<any>('https://www.themealdb.com/api/json/v1/1/random.php'),
-            this.http.get<any>('https://www.thecocktaildb.com/api/json/v1/1/random.php')
-        ]).subscribe({
+        this.cartas = [];
+        for (let i = 0; i < 16; i++) {
 
-            next: (respuestas) => {
+            this.cartas.push({
+                id: i,
+                imagen: '',
+                nombre: '',
+                tipo: 'vacia',
+                volteada: false
+            });
 
-                const comida = respuestas[0].meals[0];
-                const bebida = respuestas[1].drinks[0];
+        }
+        this.cartas[0] = {
+            id: 0,
+            imagen: 'comida.jpg',
+            nombre: 'Comida',
+            tipo: 'comida',
+            volteada: false
+        };
 
-                this.cartas = [];
+        this.cartas[1] = {
+            id: 1,
+            imagen: 'bebida.jpg',
+            nombre: 'Bebida',
+            tipo: 'bebida',
+            volteada: false
+        };
 
-                // Crear las 16 cartas
-                for (let i = 0; i < 16; i++) {
-
-                    this.cartas.push({
-                        id: i,
-                        imagen: '',
-                        nombre: '',
-                        tipo: 'vacia',
-                        volteada: false
-                    });
-
-                }
-
-                // Agregar la comida
-                this.cartas[0] = {
-                    id: 0,
-                    imagen: comida.strMealThumb,
-                    nombre: comida.strMeal,
-                    tipo: 'comida',
-                    volteada: false
-                };
-
-                // Agregar la bebida
-                this.cartas[1] = {
-                    id: 1,
-                    imagen: bebida.strDrinkThumb,
-                    nombre: bebida.strDrink,
-                    tipo: 'bebida',
-                    volteada: false
-                };
-
-                this.mezclarCartas();
-                this.cargando = false;
-
-            },
-
-            error: () => {
-                this.mensaje = 'Error al cargar las imágenes.';
-                this.cargando = false;
-            }
-
-        });
+        this.mezclarCartas();
     }
 
     mezclarCartas(): void {
-        this.cartas.sort(() => Math.random() - 0.5);
-    }
 
+        for (let i = this.cartas.length - 1; i > 0; i--) {
+
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [this.cartas[i], this.cartas[j]] =
+                [this.cartas[j], this.cartas[i]];
+
+        }
+
+    }
     voltearCarta(carta: Carta): void {
 
         if (carta.volteada || this.juegoGanado) {
@@ -110,18 +88,29 @@ export class Juego implements OnInit {
             this.mensaje = '¡Encontraste la bebida!';
         }
 
-        if (this.cartas.some(c => c.tipo === 'comida' && c.volteada) &&
-            this.cartas.some(c => c.tipo === 'bebida' && c.volteada)) {
+        const encontroComida = this.cartas.some(
+            c => c.tipo === 'comida' && c.volteada
+        );
+
+        const encontroBebida = this.cartas.some(
+            c => c.tipo === 'bebida' && c.volteada
+        );
+
+        if (encontroComida && encontroBebida) {
 
             this.juegoGanado = true;
             this.mensaje = '¡Felicidades! ¡Encontraste las dos imágenes!';
-        }
-    }
 
+        }
+
+    }
     reiniciarJuego(): void {
-        this.cargando = true;
+
         this.juegoGanado = false;
         this.mensaje = 'Encuentra la comida y la bebida.';
-        this.cargarCartas();
+
+        this.crearCartas();
+
     }
+
 }

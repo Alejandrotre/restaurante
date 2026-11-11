@@ -5,7 +5,7 @@
 
     <p>{{ mensaje }}</p>
 
-    <div class="matriz" *ngIf="!cargando">
+    <div class="matriz">
 
         <div
             class="carta"
@@ -42,11 +42,7 @@
 
     </div>
 
-    <p *ngIf="cargando">Cargando imágenes...</p>
-
-    <button
-        *ngIf="!cargando"
-        (click)="reiniciarJuego()">
+    <button (click)="reiniciarJuego()">
         Reiniciar juego
     </button>
 
